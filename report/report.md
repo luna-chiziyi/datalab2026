@@ -4,13 +4,9 @@
 
 学号：2025201685
 
-| 总分 | bitXor | logtwo | byteSwap | reverse | ... |
-| --------- | ------------- | ------------- | ------------- | ----------------- |-----------|
-| 0.00         | 0.00             | 0.00             | 0.00             | 0.00 |···  |
-
-
 test 截图：
 
+![test结果截图](../imgs/test.png)
 
 <!-- TODO: 用一个通过的截图，本地图片，放到 imgs 文件夹下，不要用这个 github，pandoc 解析可能有问题 -->
 
@@ -20,19 +16,31 @@ test 截图：
 
 <!-- 告诉助教哪些函数是你实现得最优秀的，比如你可以排序。不需要展开，展开请放到后文中。 -->
 
-1. bitXor
-2. byteSwap
+1. float_i2f
 
-### bitXor
+2. reverse
 
-```c
-// 附上题目解题代码
-```
+3. logtwo
+
+4. byteSwap
+
+5. leftBitCount
+
+6. floatScale2
+
+7. floatPower2
+
+8. float64_f2i
+
+9. logicalShift
+
+10. bitXor
 
 讲解题目思路
 
 ### bitXAnd
 思路：
+利用~（x&y）=~x|~y推导得到
 ```c++
 int bitAnd(int x, int y) {
     return ~(~x|~y);
@@ -41,6 +49,7 @@ int bitAnd(int x, int y) {
 
 ### bitXor
 思路：
+同理bitxand得到xy或，用& ~（x&y）排除1 1为1的情况
 ```c++
 // 附上题目解题代码
 int bitXor(int x, int y) {
@@ -50,6 +59,10 @@ int bitXor(int x, int y) {
 
 ### samesign
 思路：
+如果x是0，y是0 same
+如果x是0，y不是0 not same
+如果x不是0，y是0，not same
+如果x不是0，y不是0  返回sign的异或值取反（相同为1不同为0）
 ```c++
 // 附上题目解题代码
 int samesign(int x, int y) {
@@ -75,6 +88,7 @@ int samesign(int x, int y) {
 
 ### logtwo
 思路：
+二分查找最高位1位置
 ```c++
 // 附上题目解题代码
 int logtwo(int v) {
@@ -105,7 +119,9 @@ int logtwo(int v) {
 ```
 
 ### byteSwap
-
+思路：
+交换两个字节的位置
+先计算两个字节的位置，提取两个字节，把对应位置清零，再用位运算移到交换后的位置，|写入
 ```c++
 // 附上题目解题代码
 int byteSwap(int x, int n, int m) {
@@ -130,7 +146,8 @@ int byteSwap(int x, int n, int m) {
 ```
 
 ### reverse
-
+思路：
+类似归并排序，先相邻1个交换，再相邻2个，四个，八个，十六个，然后返回
 ```c++
 unsigned reverse(unsigned v) {
     v= ((v & 0xAAAAAAAAU)>>1)| ((v & 0x55555555U)<<1);//1010 0101 1
@@ -143,7 +160,8 @@ unsigned reverse(unsigned v) {
 ```
 
 ### logicalShift
-
+思路：
+x向左移动n位，用掩码提取后面几位，去除掉有符号带来的1
 ```c++
 // 附上题目解题代码
 int logicalShift(int x, int n) {
@@ -152,7 +170,8 @@ int logicalShift(int x, int n) {
 ```
 
 ### leftBitCount
-
+思路：
+利用1，2，4，8，16可组成31一下任何数，计算左连续1个数
 ```c++
 // 附上题目解题代码
 int leftBitCount(int x) {
@@ -515,3 +534,5 @@ unsigned floatPower2(int x) {
 <!-- 有哪些文章/论文/PPT/课本对你的实现有重要启发或者帮助，或者是你直接引用了某个方法 -->
 
 <!-- 请附上文章标题和可访问的网页路径 -->
+
+无
